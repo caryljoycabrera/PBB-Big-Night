@@ -83,6 +83,29 @@
             border: 3px solid rgba(255,255,255,0.2);
         }
 
+        .quick-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .quick-links a {
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .quick-links a:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
         .event-photos {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -205,6 +228,43 @@
             color: white;
         }
 
+        .info-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .info-card {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .info-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .info-card a {
+            color: #fbbf24;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .info-card a:hover {
+            text-decoration: underline;
+        }
+
         .form-section {
             background: white;
             padding: 30px;
@@ -299,6 +359,31 @@
             border: 1px solid #f5c6cb;
         }
 
+        .footer {
+            background: #333;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #fbbf24;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2em;
@@ -312,6 +397,15 @@
                 max-width: 100%;
                 margin-bottom: 15px;
             }
+
+            .quick-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -323,11 +417,19 @@
                 <img src="https://iili.io/FlvV4n9.jpg" alt="PBB Celebrity Collab Edition" class="header-image">
                 <h1>🏠 PBB Celebrity Collab Edition: The Big Night</h1>
                 <p>The Ultimate Reality Show Experience - Register Now!</p>
+                
+                <!-- Quick Navigation Links -->
+                <div class="quick-links">
+                    <a href="#celebrities">Meet the Duos</a>
+                    <a href="#sponsors">Sponsors</a>
+                    <a href="#register">Register</a>
+                    <a href="#info">Event Info</a>
+                </div>
             </div>
         </div>
 
         <!-- Celebrity Duo Photos Section -->
-        <div class="event-photos">
+        <div class="event-photos" id="celebrities">
             <div class="photo-card">
                 <img src="https://iili.io/Flk6jlR.jpg" class="photo-image">
                 <div class="photo-placeholder" style="background: linear-gradient(45deg, #15803d, #166534);">
@@ -362,11 +464,41 @@
             </div>
         </div>
 
+        <!-- Event Information Section -->
+        <div class="info-section" id="info">
+            <h2>🎉 Event Information</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>📅 Event Date</h3>
+                    <p>December 15, 2024</p>
+                    <p>7:00 PM - 11:00 PM</p>
+                </div>
+                <div class="info-card">
+                    <h3>📍 Venue</h3>
+                    <p>ABS-CBN Studio 10</p>
+                    <p>Quezon City, Philippines</p>
+                    <a href="https://maps.google.com/maps?q=ABS-CBN+Studio+10" target="_blank">View Map</a>
+                </div>
+                <div class="info-card">
+                    <h3>🎫 Tickets</h3>
+                    <p>VIP: ₱5,000 | Premium: ₱3,000</p>
+                    <p>General: ₱1,500 | Student: ₱1,000</p>
+                    <a href="#register">Register Now</a>
+                </div>
+                <div class="info-card">
+                    <h3>📞 Contact</h3>
+                    <p>Event Hotline: (02) 8415-2272</p>
+                    <p>Email: events@abs-cbn.com</p>
+                    <a href="mailto:events@abs-cbn.com">Send Email</a>
+                </div>
+            </div>
+        </div>
+
         <!-- Sponsors Section -->
-        <div class="sponsors-section">
+        <div class="sponsors-section" id="sponsors">
             <h2 style="text-align: center; color: #333; margin-bottom: 30px;">🤝 Official Event Sponsors</h2>
             <div style="overflow-x: auto;">
-                <table class="sponsors-table">
+                <table class="sponsors-table" id="sponsorsTable">
                     <thead>
                         <tr>
                             <th>Sponsor</th>
@@ -376,56 +508,15 @@
                             <th>Contact</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td style="text-align: center;">🏢</td>
-                            <td><strong>ABS-CBN Corporation</strong><br><small>Philippine Entertainment Network</small></td>
-                            <td><span class="sponsor-tier tier-platinum">Platinum</span></td>
-                            <td>Main Broadcasting Partner</td>
-                            <td>media@abs-cbn.com</td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center;">🍽️</td>
-                            <td><strong>Max's Restaurant</strong><br><small>Premium Filipino Cuisine Chain</small></td>
-                            <td><span class="sponsor-tier tier-gold">Gold</span></td>
-                            <td>Official Premium Dining Partner</td>
-                            <td>events@maxsrestaurant.com</td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center;">📱</td>
-                            <td><strong>Smart Communications</strong><br><small>Telecommunications</small></td>
-                            <td><span class="sponsor-tier tier-gold">Gold</span></td>
-                            <td>Connectivity & Mobile Services</td>
-                            <td>partnerships@smart.com.ph</td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center;">🏪</td>
-                            <td><strong>SM Supermalls</strong><br><small>Shopping & Entertainment</small></td>
-                            <td><span class="sponsor-tier tier-silver">Silver</span></td>
-                            <td>Venue & Logistics Support</td>
-                            <td>events@smsupermalls.com</td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center;">🥤</td>
-                            <td><strong>Coca-Cola Philippines</strong><br><small>Beverage Company</small></td>
-                            <td><span class="sponsor-tier tier-silver">Silver</span></td>
-                            <td>Official Beverage Partner</td>
-                            <td>marketing@coca-cola.com.ph</td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center;">🚗</td>
-                            <td><strong>Toyota Motor Philippines</strong><br><small>Automotive</small></td>
-                            <td><span class="sponsor-tier tier-silver">Silver</span></td>
-                            <td>Official Transportation Partner</td>
-                            <td>events@toyota.com.ph</td>
-                        </tr>
+                    <tbody id="sponsorsTableBody">
+                        <!-- Sponsors will be dynamically generated -->
                     </tbody>
                 </table>
             </div>
         </div>
 
         <!-- Registration Form Section -->
-        <div class="section">
+        <div class="section" id="register">
             <div class="form-section">
                 <h2>📋 Event Registration Form</h2>
                 <div id="registration-alert" class="alert"></div>
@@ -480,15 +571,146 @@
                 </form>
             </div>
         </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-links">
+                <a href="https://www.abs-cbn.com" target="_blank">ABS-CBN Official Site</a>
+                <a href="https://www.facebook.com/PBBabscbn" target="_blank">PBB Facebook</a>
+                <a href="https://twitter.com/PBBabscbn" target="_blank">PBB Twitter</a>
+                <a href="https://www.youtube.com/abscbn" target="_blank">YouTube Channel</a>
+                <a href="mailto:events@abs-cbn.com">Contact Us</a>
+            </div>
+            <p>&copy; 2024 ABS-CBN Corporation. All rights reserved.</p>
+            <p>Produced by: <a href="https://www.abs-cbn.com" target="_blank">ABS-CBN Entertainment</a></p>
+        </div>
     </div>
 
     <script>
+        // Sponsors data array for looping
+        const sponsorsData = [
+            {
+                icon: '🏢',
+                company: 'ABS-CBN Corporation',
+                description: 'Philippine Entertainment Network',
+                tier: 'Platinum',
+                contribution: 'Main Broadcasting Partner',
+                contact: 'media@abs-cbn.com'
+            },
+            {
+                icon: '🍽️',
+                company: 'Max\'s Restaurant',
+                description: 'Premium Filipino Cuisine Chain',
+                tier: 'Gold',
+                contribution: 'Official Premium Dining Partner',
+                contact: 'events@maxsrestaurant.com'
+            },
+            {
+                icon: '📱',
+                company: 'Smart Communications',
+                description: 'Telecommunications',
+                tier: 'Gold',
+                contribution: 'Connectivity & Mobile Services',
+                contact: 'partnerships@smart.com.ph'
+            },
+            {
+                icon: '🏪',
+                company: 'SM Supermalls',
+                description: 'Shopping & Entertainment',
+                tier: 'Silver',
+                contribution: 'Venue & Logistics Support',
+                contact: 'events@smsupermalls.com'
+            },
+            {
+                icon: '🥤',
+                company: 'Coca-Cola Philippines',
+                description: 'Beverage Company',
+                tier: 'Silver',
+                contribution: 'Official Beverage Partner',
+                contact: 'marketing@coca-cola.com.ph'
+            },
+            {
+                icon: '🚗',
+                company: 'Toyota Motor Philippines',
+                description: 'Automotive',
+                tier: 'Silver',
+                contribution: 'Official Transportation Partner',
+                contact: 'events@toyota.com.ph'
+            }
+        ];
+
+        // Function to generate sponsors table using loops
+        function generateSponsorsTable() {
+            const tableBody = document.getElementById('sponsorsTableBody');
+            
+            // Loop through sponsors data
+            sponsorsData.forEach(sponsor => {
+                const row = document.createElement('tr');
+                
+                // Create table cells
+                const cells = [
+                    `<td style="text-align: center;">${sponsor.icon}</td>`,
+                    `<td><strong>${sponsor.company}</strong><br><small>${sponsor.description}</small></td>`,
+                    `<td><span class="sponsor-tier tier-${sponsor.tier.toLowerCase()}">${sponsor.tier}</span></td>`,
+                    `<td>${sponsor.contribution}</td>`,
+                    `<td><a href="mailto:${sponsor.contact}" style="color: #667eea; text-decoration: none;">${sponsor.contact}</a></td>`
+                ];
+                
+                row.innerHTML = cells.join('');
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Function to handle smooth scrolling for anchor links
+        function setupSmoothScrolling() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Function to validate form with enhanced checks
+        function validateForm() {
+            const form = document.getElementById('googleForm');
+            const inputs = form.querySelectorAll('input[required], select[required]');
+            let isValid = true;
+            
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    input.style.borderColor = '#dc3545';
+                    isValid = false;
+                } else {
+                    input.style.borderColor = '#28a745';
+                }
+            });
+            
+            return isValid;
+        }
+
         // Function to handle form submission
         const scriptURL = 'https://script.google.com/macros/s/AKfycbxd1MwtZjPCQiPqNDCPPEvNJDFZe7VcRpcK7052vcDC_4XsiVoFduqGH6Tp-EYwZnIYqA/exec';
         const form = document.getElementById('googleForm');
 
         form.addEventListener('submit', e => {
             e.preventDefault();
+
+            // Validate form first
+            if (!validateForm()) {
+                showAlert('registration-alert', 'error', 'Please fill in all required fields.');
+                return;
+            }
 
             // Show loading state
             const submitButton = form.querySelector('button[type="submit"]');
@@ -502,8 +724,14 @@
                 mode: 'no-cors'
             })
             .then(response => {
-                showAlert('registration-alert', 'success', 'Your registration has been recorded successfully!');
+                showAlert('registration-alert', 'success', 'Your registration has been recorded successfully! Check your email for confirmation.');
                 form.reset();
+                
+                // Reset form validation styles
+                const inputs = form.querySelectorAll('input, select');
+                inputs.forEach(input => {
+                    input.style.borderColor = '#e9ecef';
+                });
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -527,6 +755,22 @@
                 alert.style.display = 'none';
             }, 5000);
         }
+
+        // Initialize page functions when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            generateSponsorsTable();
+            setupSmoothScrolling();
+            
+            // Add form validation on input change
+            const formInputs = document.querySelectorAll('#googleForm input, #googleForm select');
+            formInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    if (this.hasAttribute('required') && this.value.trim()) {
+                        this.style.borderColor = '#28a745';
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
