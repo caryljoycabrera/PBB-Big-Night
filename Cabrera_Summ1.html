@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PBB Celebrity Collab Edition: The Big Night - Registration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://iili.io/FlkdWRn.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #730710, #F21628, #101573, #303AF2, #3D58F2);
+            background-size: 400% 400%;
+            animation: gradientShift 4s ease infinite;
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .header-image {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 3px solid rgba(255,255,255,0.2);
+        }
+
+        .event-photos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 30px;
+            background: #f8f9fa;
+        }
+
+        .photo-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .photo-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+
+        .photo-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1em;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .photo-card:hover .photo-placeholder {
+            opacity: 1;
+        }
+
+        .photo-card:hover .photo-image {
+            opacity: 0.3;
+        }
+
+        .photo-card h3 {
+            padding: 15px;
+            color: #333;
+            text-align: center;
+        }
+
+        .section {
+            padding: 40px;
+            background: white;
+        }
+
+        .sponsors-section {
+            background: #f8f9fa;
+            padding: 40px;
+        }
+
+        .sponsors-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .sponsors-table th,
+        .sponsors-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .sponsors-table th {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            font-weight: bold;
+        }
+
+        .sponsors-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .sponsor-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .sponsor-tier {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .tier-platinum {
+            background: linear-gradient(45deg, #e5e7eb, #f3f4f6);
+            color: #374151;
+        }
+
+        .tier-gold {
+            background: linear-gradient(45deg, #fbbf24, #f59e0b);
+            color: white;
+        }
+
+        .tier-silver {
+            background: linear-gradient(45deg, #9ca3af, #6b7280);
+            color: white;
+        }
+
+        .form-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            width: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .alert.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-image {
+                max-width: 100%;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <div class="header-content">
+                <img src="https://iili.io/FlvV4n9.jpg" alt="PBB Celebrity Collab Edition" class="header-image">
+                <h1>🏠 PBB Celebrity Collab Edition: The Big Night</h1>
+                <p>The Ultimate Reality Show Experience - Register Now!</p>
+            </div>
+        </div>
+
+        <!-- Celebrity Duo Photos Section -->
+        <div class="event-photos">
+            <div class="photo-card">
+                <img src="https://iili.io/Flk6jlR.jpg" class="photo-image">
+                <div class="photo-placeholder" style="background: linear-gradient(45deg, #15803d, #166534);">
+                    💚 AzVer
+                    <br>AZ Martinez and<br>River Joseph
+                </div>
+                <h3>AzVer<br>The Devoted Duo</h3>
+            </div>
+            <div class="photo-card">
+                <img src="https://iili.io/FlvKFFR.jpg" class="photo-image">
+                <div class="photo-placeholder" style="background: linear-gradient(45deg, #db2777, #be185d);">
+                    🩷 CharEs
+                    <br>Charlie Fleming and<br>Esnyr Ranollo
+                </div>
+                <h3>CharEs<br>The Breadwinner Duo</h3>
+            </div>
+            <div class="photo-card">
+                <img src="https://iili.io/Flvquv2.jpg" class="photo-image">
+                <div class="photo-placeholder" style="background: linear-gradient(45deg, #7c3aed, #6d28d9);">
+                    💜 BreKa
+                    <br>Brent Manalo and<br>Mika Salamanca
+                </div>
+                <h3>BreKa<br>The Selfless Duo</h3>
+            </div>
+            <div class="photo-card">
+                <img src="https://iili.io/FlvBkx9.jpg" class="photo-image">
+                <div class="photo-placeholder" style="background: linear-gradient(45deg, #0e7490, #155e75);">
+                    🩵 RaWi
+                    <br>Ralph de Leon and<br>Will Ashley de Leon
+                </div>
+                <h3>RaWi<br>The Competitive Duo</h3>
+            </div>
+        </div>
+
+        <!-- Sponsors Section -->
+        <div class="sponsors-section">
+            <h2 style="text-align: center; color: #333; margin-bottom: 30px;">🤝 Official Event Sponsors</h2>
+            <div style="overflow-x: auto;">
+                <table class="sponsors-table">
+                    <thead>
+                        <tr>
+                            <th>Sponsor</th>
+                            <th>Company</th>
+                            <th>Tier</th>
+                            <th>Contribution</th>
+                            <th>Contact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align: center;">🏢</td>
+                            <td><strong>ABS-CBN Corporation</strong><br><small>Philippine Entertainment Network</small></td>
+                            <td><span class="sponsor-tier tier-platinum">Platinum</span></td>
+                            <td>Main Broadcasting Partner</td>
+                            <td>media@abs-cbn.com</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">🍽️</td>
+                            <td><strong>Max's Restaurant</strong><br><small>Premium Filipino Cuisine Chain</small></td>
+                            <td><span class="sponsor-tier tier-gold">Gold</span></td>
+                            <td>Official Premium Dining Partner</td>
+                            <td>events@maxsrestaurant.com</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">📱</td>
+                            <td><strong>Smart Communications</strong><br><small>Telecommunications</small></td>
+                            <td><span class="sponsor-tier tier-gold">Gold</span></td>
+                            <td>Connectivity & Mobile Services</td>
+                            <td>partnerships@smart.com.ph</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">🏪</td>
+                            <td><strong>SM Supermalls</strong><br><small>Shopping & Entertainment</small></td>
+                            <td><span class="sponsor-tier tier-silver">Silver</span></td>
+                            <td>Venue & Logistics Support</td>
+                            <td>events@smsupermalls.com</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">🥤</td>
+                            <td><strong>Coca-Cola Philippines</strong><br><small>Beverage Company</small></td>
+                            <td><span class="sponsor-tier tier-silver">Silver</span></td>
+                            <td>Official Beverage Partner</td>
+                            <td>marketing@coca-cola.com.ph</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">🚗</td>
+                            <td><strong>Toyota Motor Philippines</strong><br><small>Automotive</small></td>
+                            <td><span class="sponsor-tier tier-silver">Silver</span></td>
+                            <td>Official Transportation Partner</td>
+                            <td>events@toyota.com.ph</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Registration Form Section -->
+        <div class="section">
+            <div class="form-section">
+                <h2>📋 Event Registration Form</h2>
+                <div id="registration-alert" class="alert"></div>
+                <form id="googleForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="fullName">Full Name *</label>
+                            <input type="text" id="fullName" name="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Age *</label>
+                            <input type="number" id="age" name="age" min="18" max="99" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ticketType">Ticket Type *</label>
+                            <select id="ticketType" name="ticketType" required>
+                                <option value="">Select Ticket Type</option>
+                                <option value="VIP">VIP Access - ₱5,000</option>
+                                <option value="Premium">Premium - ₱3,000</option>
+                                <option value="General">General Admission - ₱1,500</option>
+                                <option value="Student">Student Discount - ₱1,000</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="favoriteDuo">Favorite Celebrity Duo</label>
+                            <select id="favoriteDuo" name="favoriteDuo">
+                                <option value="">Choose your favorite duo</option>
+                                <option value="AzVer">AzVer</option>
+                                <option value="CharEs">CharEs</option>
+                                <option value="BreKa">BreKa</option>
+                                <option value="RaWi">RaWi</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="dietaryRequirements">Dietary Requirements</label>
+                            <textarea id="dietaryRequirements" name="dietaryRequirements" placeholder="Any special dietary needs or allergies?"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="specialRequests">Special Requests</label>
+                            <textarea id="specialRequests" name="specialRequests" placeholder="Any special requests or comments?"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn">🎫 Register for The Big Night</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to handle form submission
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxd1MwtZjPCQiPqNDCPPEvNJDFZe7VcRpcK7052vcDC_4XsiVoFduqGH6Tp-EYwZnIYqA/exec';
+        const form = document.getElementById('googleForm');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+
+            // Show loading state
+            const submitButton = form.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'Submitting...';
+            submitButton.disabled = true;
+
+            fetch(scriptURL, { 
+                method: 'POST', 
+                body: new FormData(form),
+                mode: 'no-cors'
+            })
+            .then(response => {
+                showAlert('registration-alert', 'success', 'Your registration has been recorded successfully!');
+                form.reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showAlert('registration-alert', 'error', 'There was an error submitting your form. Please try again.');
+            })
+            .finally(() => {
+                // Reset button state
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            });
+        });
+
+        // Function to show alerts
+        function showAlert(elementId, type, message) {
+            const alert = document.getElementById(elementId);
+            alert.className = `alert ${type}`;
+            alert.textContent = message;
+            alert.style.display = 'block';
+            
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
