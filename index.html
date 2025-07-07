@@ -448,46 +448,93 @@
     </div>
 
     <script>
+
         // Function to handle form submission
         const scriptURL = 'https://script.google.com/macros/s/AKfycbxd1MwtZjPCQiPqNDCPPEvNJDFZe7VcRpcK7052vcDC_4XsiVoFduqGH6Tp-EYwZnIYqA/exec';
         const form = document.getElementById('googleForm');
-
+        
         form.addEventListener('submit', e => {
             e.preventDefault();
-
+        
+            // Clear previous alerts
+            clearAlerts();
+        
+            // Validate form fields
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const age = document.getElementById('age').value;
+            const ticketType = document.getElementById('ticketType').value;
+        
+            let isValid = true;
+        
+            // Full Name Validation
+            if (!fullName) {
+                showAlert('registration-alert', 'error', 'Full Name is required!');
+                isValid = false;
+            }
+        
+            // Email Validation
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!email || !emailPattern.test(email)) {
+                showAlert('registration-alert', 'error', 'Please enter a valid email address!');
+                isValid = false;
+            }
+        
+            // Phone Number Validation
+            const phonePattern = /^[0-9]{10}$/; // Assuming 10 digit phone numbers
+            if (!phone || !phonePattern.test(phone)) {
+                showAlert('registration-alert', 'error', 'Please enter a valid 10-digit phone number!');
+                isValid = false;
+            }
+        
+            // Age Validation
+            if (!age || age < 18 || age > 99) {
+                showAlert('registration-alert', 'error', 'Please enter a valid age between 18 and 99!');
+                isValid = false;
+            }
+        
+            // Ticket Type Validation
+            if (!ticketType) {
+                showAlert('registration-alert', 'error', 'Ticket Type is required!');
+                isValid = false;
+            }
+        
+            if (!isValid) return;
+        
             // Show loading state
             const submitButton = form.querySelector('button[type="submit"]');
             const originalText = submitButton.textContent;
             submitButton.textContent = 'Submitting...';
             submitButton.disabled = true;
-
-            fetch(scriptURL, { 
-                method: 'POST', 
+        
+            fetch(scriptURL, {
+                method: 'POST',
                 body: new FormData(form),
                 mode: 'no-cors'
             })
-            .then(response => {
-                showAlert('registration-alert', 'success', 'Your registration has been recorded successfully!');
-                form.reset();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                showAlert('registration-alert', 'error', 'There was an error submitting your form. Please try again.');
-            })
-            .finally(() => {
-                // Reset button state
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
-            });
+                .then(response => {
+                    showAlert('registration-alert', 'success', 'Your registration has been recorded successfully!');
+                    form.reset();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showAlert('registration-alert', 'error', 'There was an error submitting your form. Please try again.');
+                })
+                .finally(() => {
+                    // Reset button state
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                });
         });
-
+        
         // Function to show alerts
         function showAlert(elementId, type, message) {
             const alert = document.getElementById(elementId);
             alert.className = `alert ${type}`;
             alert.textContent = message;
             alert.style.display = 'block';
-            
+        
             setTimeout(() => {
                 alert.style.display = 'none';
             }, 5000);
