@@ -455,6 +455,16 @@
         form.addEventListener('submit', e => {
             e.preventDefault();
 
+            // Get phone number value
+            const phoneNumber = document.getElementById('phone').value;
+            
+            // Validate phone number format (e.g., Philippine format: +63 or 09 followed by 9 digits)
+            const phoneRegex = /^(09|\+63)[0-9]{9}$/;
+            if (!phoneRegex.test(phoneNumber)) {
+                showAlert('registration-alert', 'error', 'Please enter a valid phone number (e.g., +63XXXXXXXXXX or 09XXXXXXXXX).');
+                return;
+            }
+
             // Show loading state
             const submitButton = form.querySelector('button[type="submit"]');
             const originalText = submitButton.textContent;
